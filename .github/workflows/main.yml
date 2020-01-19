@@ -1,0 +1,34 @@
+name: Portfolio App
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    name: Build Portfolio App
+    env:
+      my_secret: ${{61aa80da71dfc17a8dd90bac3babd864cde7ded1}}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'dev'
+      - run: flutter config --enable-web
+      - run: flutter pub get
+      - run: flutter build web --release
+      - run: |
+          cd build/web
+          git init
+          # type configurations: your user.email and user.name followed lines 
+          # git config --global user.email your_email 
+          # git config --global user.name your_name 
+          git config --global user.email benjaminudoh10@gmail.com
+          git config --global user.name Benjamin Udoh
+          git status
+          # change this remote url for example your remote url is https://github.com/onatcipli/flutter_web.git then the following:
+          git remote add origin https://${{61aa80da71dfc17a8dd90bac3babd864cde7ded1}}@github.com/benjaminudoh10/portfolio.git
+          git checkout -b gh-pages
+          git add --all
+          git commit -m "update"
+          git push origin gh-pages -f
