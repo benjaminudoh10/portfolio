@@ -20,13 +20,9 @@ jobs:
       - run: |
           cd build/web
           git init
-          # type configurations: your user.email and user.name followed lines 
-          # git config --global user.email your_email 
-          # git config --global user.name your_name 
           git config --global user.email benjaminudoh10@gmail.com
           git config --global user.name Benjamin Udoh
           git status
-          # change this remote url for example your remote url is https://github.com/onatcipli/flutter_web.git then the following:
           git remote add origin https://${{secrets.commit_secret}}@github.com/benjaminudoh10/portfolio.git
           git checkout -b gh-pages
           git add --all
