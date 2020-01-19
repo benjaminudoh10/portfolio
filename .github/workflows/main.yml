@@ -7,7 +7,7 @@ jobs:
   build:
     name: Build Portfolio App
     env:
-      my_secret: ${{61aa80da71dfc17a8dd90bac3babd864cde7ded1}}
+      my_secret: ${{secrets.commit_secret}}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -27,7 +27,7 @@ jobs:
           git config --global user.name Benjamin Udoh
           git status
           # change this remote url for example your remote url is https://github.com/onatcipli/flutter_web.git then the following:
-          git remote add origin https://${{61aa80da71dfc17a8dd90bac3babd864cde7ded1}}@github.com/benjaminudoh10/portfolio.git
+          git remote add origin https://${{secrets.commit_secret}}@github.com/benjaminudoh10/portfolio.git
           git checkout -b gh-pages
           git add --all
           git commit -m "update"
